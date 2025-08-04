@@ -153,18 +153,83 @@ window.addEventListener('load', () => {
     }, 300);
 });
 
-// Contact form handling
+// Contact form handling with EmailJS
 const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
+const submitBtn = document.getElementById('submitBtn');
+const btnText = submitBtn.querySelector('.btn-text');
+const btnLoading = submitBtn.querySelector('.btn-loading');
+
+// Initialize EmailJS (uncomment when you have your keys)
+// emailjs.init("YOUR_PUBLIC_KEY");
+
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // Add your form submission logic here
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-    console.log('Form submitted:', formData);
-    // Reset form
-    contactForm.reset();
-    alert('Message sent successfully!');
+    
+    // Show loading state
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline-flex';
+    submitBtn.disabled = true;
+    
+    try {
+        // Get form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+        
+        // Method 1: EmailJS (uncomment when you have your keys)
+        /*
+        const response = await emailjs.send(
+            'YOUR_SERVICE_ID',
+            'YOUR_TEMPLATE_ID',
+            {
+                from_name: formData.name,
+                from_email: formData.email,
+                message: formData.message,
+                to_name: 'Ronald Moran Jr'
+            }
+        );
+        */
+        
+        // Method 2: Formspree (easier setup - just change the form action)
+        // For now, we'll simulate a successful submission
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+        
+        // Success
+        showNotification('Message sent successfully!', 'success');
+        contactForm.reset();
+        
+    } catch (error) {
+        console.error('Email send failed:', error);
+        showNotification('Failed to send message. Please try again.', 'error');
+    } finally {
+        // Reset button state
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        submitBtn.disabled = false;
+    }
 });
+
+// Notification function
+function showNotification(message, type) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => notification.classList.add('show'), 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
