@@ -86,48 +86,71 @@ const revealOnScroll = () => {
 };
 
 window.addEventListener('scroll', revealOnScroll);
-revealOnScroll(); // Initial check
 
-// Sample projects data
+// Initial check with a small delay to ensure DOM is ready
+setTimeout(() => {
+    revealOnScroll();
+}, 100);
+
+// Projects data
 const projects = [
     {
-        title: 'Project 1',
-        description: 'A responsive web application built with HTML, CSS, and JavaScript.',
-        image: 'https://via.placeholder.com/400x300',
-        github: '#',
-        live: '#'
-    },
-    {
-        title: 'Project 2',
-        description: 'An interactive dashboard with dark mode support.',
-        image: 'https://via.placeholder.com/400x300',
-        github: '#',
-        live: '#'
-    },
-    // Add more projects as needed
+        title: 'Budget Tracker',
+        description: 'A comprehensive budget tracking application that helps users manage their finances effectively. Features include expense tracking, income management, real-time balance updates, and data visualization. Built with HTML, CSS, and JavaScript, focusing on a clean and intuitive user interface.',
+        image: 'assets/BudgetTracker.png',
+        github: 'https://github.com/moranr123/Budget-Tracker',
+        live: 'https://moranr123.github.io/Budget-Tracker/'
+    }
+    // More projects can be added here
 ];
 
 // Render projects
-const projectsGrid = document.querySelector('.projects-grid');
-projects.forEach(project => {
-    const projectCard = document.createElement('div');
-    projectCard.className = 'project-card reveal';
-    projectCard.innerHTML = `
-        <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy">
-        <div class="project-content">
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <div class="project-links">
-                <a href="${project.github}" class="project-link" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="${project.live}" class="project-link" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> Live Demo
-                </a>
-            </div>
-        </div>
-    `;
-    projectsGrid.appendChild(projectCard);
+document.addEventListener('DOMContentLoaded', () => {
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (projectsGrid) {
+        // Check if projects are already rendered in HTML
+        const existingProjects = projectsGrid.querySelectorAll('.project-card');
+        
+        // Only render if no projects exist (for dynamic rendering)
+        if (existingProjects.length === 0) {
+            // Clear existing content
+            projectsGrid.innerHTML = '';
+            
+            // Add projects
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card reveal';
+                projectCard.innerHTML = `
+                    <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy">
+                    <div class="project-content">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="project-links">
+                            <a href="${project.github}" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="${project.live}" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Trigger reveal animation for existing elements
+        setTimeout(() => {
+            revealOnScroll();
+        }, 200);
+    }
+});
+
+// Additional initialization to ensure all reveal elements are visible
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        revealOnScroll();
+    }, 300);
 });
 
 // Contact form handling
