@@ -161,6 +161,64 @@ window.addEventListener('load', () => {
     }, 300);
 });
 
+// Scroll indicator functionality
+const scrollIndicator = document.querySelector('.scroll-indicator');
+const scrollIcon = document.getElementById('scrollIcon');
+const scrollIconInner = document.getElementById('scrollIconInner');
+const scrollText = document.getElementById('scrollText');
+
+if (scrollIndicator) {
+    // Check if we're at the bottom of the page
+    const isAtBottom = () => {
+        return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+    };
+
+    // Update scroll indicator based on position
+    const updateScrollIndicator = () => {
+        if (isAtBottom()) {
+            scrollIndicator.classList.add('at-bottom');
+            scrollIconInner.className = 'fas fa-chevron-up';
+            scrollText.textContent = 'Scroll to top';
+        } else {
+            scrollIndicator.classList.remove('at-bottom');
+            scrollIconInner.className = 'fas fa-chevron-down';
+            scrollText.textContent = 'Scroll to explore';
+        }
+
+        // Hide when scrolled down (but not at bottom)
+        if (window.scrollY > 100 && !isAtBottom()) {
+            scrollIndicator.classList.add('hidden');
+        } else {
+            scrollIndicator.classList.remove('hidden');
+        }
+    };
+
+    // Handle scroll indicator click
+    scrollIcon.addEventListener('click', () => {
+        if (isAtBottom()) {
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            // Scroll to next section (about)
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+
+    // Update on scroll
+    window.addEventListener('scroll', updateScrollIndicator);
+    
+    // Initial check
+    updateScrollIndicator();
+}
+
 // Contact form handling with EmailJS
 const contactForm = document.querySelector('.contact-form');
 const submitBtn = document.getElementById('submitBtn');
