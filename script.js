@@ -107,6 +107,13 @@ const projects = [
         image: 'assets/QuizApp.png',
         github: 'https://github.com/moranr123/QuizApp',
         live: 'https://moranr123.github.io/QuizApp/'
+    },
+    {
+        title: 'Enhanced Weather App',
+        description: 'A modern, responsive weather application with advanced features including automatic location detection, geolocation support, unit conversion (Celsius/Fahrenheit), 5-day forecast, and enhanced weather details. Features glassmorphism design with smooth animations, loading states, and comprehensive error handling. Built with HTML, CSS, JavaScript, and OpenWeatherMap API.',
+        image: 'assets/WeatherApp.png',
+        github: 'https://github.com/moranr123/Weather-App',
+        live: 'https://moranr123.github.io/Weather-App/'
     }
     // More projects can be added here
 ];
