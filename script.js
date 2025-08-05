@@ -100,6 +100,13 @@ const projects = [
         image: 'assets/BudgetTracker.png',
         github: 'https://github.com/moranr123/Budget-Tracker',
         live: 'https://moranr123.github.io/Budget-Tracker/'
+    },
+    {
+        title: 'Smart Quiz App',
+        description: 'A modern, responsive quiz application offering an engaging learning experience across multiple subjects. Features include 4 subject categories (English, Math, Science, History), real-time feedback with audio and visual cues, progress tracking, and glassmorphism UI design. Built with HTML, CSS, and JavaScript for interactive learning.',
+        image: 'assets/QuizApp.png',
+        github: 'https://github.com/moranr123/QuizApp',
+        live: 'https://moranr123.github.io/QuizApp/'
     }
     // More projects can be added here
 ];
@@ -108,38 +115,32 @@ const projects = [
 document.addEventListener('DOMContentLoaded', () => {
     const projectsGrid = document.querySelector('.projects-grid');
     if (projectsGrid) {
-        // Check if projects are already rendered in HTML
-        const existingProjects = projectsGrid.querySelectorAll('.project-card');
+        // Clear existing content
+        projectsGrid.innerHTML = '';
         
-        // Only render if no projects exist (for dynamic rendering)
-        if (existingProjects.length === 0) {
-            // Clear existing content
-            projectsGrid.innerHTML = '';
-            
-            // Add projects
-            projects.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'project-card reveal';
-                projectCard.innerHTML = `
-                    <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy">
-                    <div class="project-content">
-                        <h3>${project.title}</h3>
-                        <p>${project.description}</p>
-                        <div class="project-links">
-                            <a href="${project.github}" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="${project.live}" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
+        // Add projects from the array
+        projects.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card reveal';
+            projectCard.innerHTML = `
+                <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy">
+                <div class="project-content">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <div class="project-links">
+                        <a href="${project.github}" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="${project.live}" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
                     </div>
-                `;
-                projectsGrid.appendChild(projectCard);
-            });
-        }
+                </div>
+            `;
+            projectsGrid.appendChild(projectCard);
+        });
 
-        // Trigger reveal animation for existing elements
+        // Trigger reveal animation for new elements
         setTimeout(() => {
             revealOnScroll();
         }, 200);
