@@ -653,6 +653,20 @@ body {
     text-align: center;
 }
 
+.resume-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.resume-buttons .resume-btn {
+    flex: 1;
+    min-width: 140px;
+    max-width: 160px;
+    text-align: center;
+}
+
 .resume-btn {
     display: inline-flex;
     align-items: center;
