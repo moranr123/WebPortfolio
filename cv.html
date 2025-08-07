@@ -167,6 +167,7 @@
         }
 
         .project-link {
+            display: inline-block;
             color: #2563eb;
             text-decoration: none;
             font-weight: 500;
@@ -175,6 +176,7 @@
             border: 1px solid #2563eb;
             border-radius: 4px;
             transition: all 0.3s ease;
+            margin-right: 10px;
         }
 
         .project-link:hover {
@@ -384,10 +386,12 @@
             }
 
             .project-link {
+                display: inline-block !important;
                 color: #2563eb !important;
-                text-decoration: underline !important;
-                border: none !important;
-                padding: 0 !important;
+                text-decoration: none !important;
+                border: 1px solid #2563eb !important;
+                padding: 5px 10px !important;
+                margin-right: 10px !important;
             }
 
             .certificate-link {
@@ -549,6 +553,29 @@
     <div class="section">
         <div class="section-title">Featured Projects</div>
         
+        <div class="project">
+            <div class="project-title">Pawsafety App</div>
+            <div class="project-description">
+                A comprehensive pet management system built with React Native (mobile) and React.js (web dashboard). The application 
+                features a dual-interface approach: a mobile app for pet owners and a web dashboard for administrators.
+                <strong>Key Features:</strong>
+                - Pet registration with QR code generation and photo upload
+                - Real-time lost pet reporting with location tracking
+                - Community pet list with filtering capabilities
+                - Role-based admin dashboard for superadmin and department personnel
+                - Firebase integration for real-time data synchronization
+                <strong>Technical Achievement:</strong> Successfully implemented a complex authentication system with role-based access control,
+                integrated real-time location tracking, and developed a scalable cloud infrastructure using Firebase services.
+            </div>
+            <div class="project-tech">
+                <strong>Technologies:</strong> React Native, React.js, Firebase (Authentication, Firestore, Storage, Cloud Functions), 
+                Expo, Tailwind CSS, React Native Maps
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/moranr123/Pawsafety" class="project-link" target="_blank">GitHub</a>
+            </div>
+        </div>
+
         <div class="project">
             <div class="project-title">Budget Tracker</div>
             <div class="project-description">

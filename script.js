@@ -95,22 +95,31 @@ setTimeout(() => {
 // Projects data
 const projects = [
     {
+        title: 'Pawsafety App',
+        description: 'A comprehensive pet management system featuring both a React Native mobile app and React-based Superadmin Web Dashboard. The app includes features like pet registration with QR codes, lost pet reporting with location tracking, stray animal reporting, and a community pet list. The web dashboard provides role-based access for different administrators.',
+        image: 'assets/Pawsafety.png',
+        techStack: ['React Native', 'React.js', 'Firebase', 'Expo', 'Tailwind CSS', 'Cloud Functions'],
+        githubLink: 'https://github.com/moranr123/Pawsafety',
+        demoNote: 'Demo will be available upon completion',
+        status: 'In Development'
+    },
+    {
         title: 'Budget Tracker',
-        description: 'A comprehensive budget tracking application that helps users manage their finances effectively. Features include expense tracking, income management, real-time balance updates, and data visualization. Built with HTML, CSS, and JavaScript, focusing on a clean and intuitive user interface.',
+        description: 'A comprehensive budget tracking application that helps users manage their finances effectively. Features include expense tracking, income management, real-time balance updates, and data visualization.',
         image: 'assets/BudgetTracker.png',
         github: 'https://github.com/moranr123/Budget-Tracker',
         live: 'https://moranr123.github.io/Budget-Tracker/'
     },
     {
         title: 'Smart Quiz App',
-        description: 'A modern, responsive quiz application offering an engaging learning experience across multiple subjects. Features include 4 subject categories (English, Math, Science, History), real-time feedback with audio and visual cues, progress tracking, and glassmorphism UI design. Built with HTML, CSS, and JavaScript for interactive learning.',
+        description: 'A modern, responsive quiz application offering an engaging learning experience across multiple subjects. Features include 4 subject categories (English, Math, Science, History), real-time feedback with audio and visual cues, progress tracking, and glassmorphism UI design.',
         image: 'assets/QuizApp.png',
         github: 'https://github.com/moranr123/QuizApp',
         live: 'https://moranr123.github.io/QuizApp/'
     },
     {
         title: 'Enhanced Weather App',
-        description: 'A modern, responsive weather application with advanced features including automatic location detection, geolocation support, unit conversion (Celsius/Fahrenheit), 5-day forecast, and enhanced weather details. Features glassmorphism design with smooth animations, loading states, and comprehensive error handling. Built with HTML, CSS, JavaScript, and OpenWeatherMap API.',
+        description: 'A modern, responsive weather application with advanced features including automatic location detection, geolocation support, unit conversion (Celsius/Fahrenheit), 5-day forecast, and enhanced weather details. Features glassmorphism design with smooth animations and comprehensive error handling.',
         image: 'assets/WeatherApp.png',
         github: 'https://github.com/moranr123/Weather-App',
         live: 'https://moranr123.github.io/Weather-App/'
@@ -134,13 +143,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="project-content">
                     <h3>${project.title}</h3>
                     <p>${project.description}</p>
+                    ${project.status ? `<div class="project-status">${project.status}</div>` : ''}
+                    ${project.demoNote ? `<div class="project-demo-note">${project.demoNote}</div>` : ''}
                     <div class="project-links">
-                        <a href="${project.github}" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="${project.live}" class="project-link" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
+                        ${project.githubLink ? 
+                          `<a href="${project.githubLink}" class="project-link" target="_blank">
+                              <i class="fab fa-github"></i> GitHub
+                           </a>` :
+                          `<a href="${project.github}" class="project-link" target="_blank">
+                              <i class="fab fa-github"></i> GitHub
+                           </a>`
+                        }
+                        ${(!project.status && project.live) ? 
+                          `<a href="${project.live}" class="project-link" target="_blank">
+                              <i class="fas fa-external-link-alt"></i> Live Demo
+                           </a>` : ''
+                        }
                     </div>
                 </div>
             `;
