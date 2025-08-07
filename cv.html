@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ronald Moran Jr - Software Engineer CV</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -33,6 +34,41 @@
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.02) 100%);
             border-radius: 12px;
             padding: 25px;
+            position: relative;
+        }
+
+        .download-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .download-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
         }
 
         .name {
@@ -381,6 +417,10 @@
                 padding: 15px;
             }
             
+            .download-btn {
+                display: none !important;
+            }
+            
             .section {
                 page-break-inside: avoid;
             }
@@ -403,6 +443,12 @@
         }
 
         @media (max-width: 600px) {
+            .download-btn {
+                position: static;
+                margin: 0 auto 20px auto;
+                display: inline-flex;
+            }
+            
             .contact-info {
                 flex-direction: column;
                 gap: 10px;
@@ -425,6 +471,12 @@
 </head>
 <body>
     <div class="header">
+        <button class="download-btn" onclick="downloadPDF()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Download PDF
+        </button>
         <div class="name">Ronald Moran Jr</div>
         <div class="title">Software Engineer & Information Technology Student</div>
         <div class="contact-info">
@@ -716,5 +768,32 @@
             <li>Experience with technical documentation and project management methodologies</li>
         </ul>
     </div>
+
+    <script>
+        function downloadPDF() {
+            // Configure PDF options
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: 'Ronald_Moran_Jr_CV.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
+            };
+
+            // Get the element to convert
+            const element = document.body;
+
+            // Generate PDF
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
 </body>
 </html> 
