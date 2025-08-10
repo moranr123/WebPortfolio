@@ -104,6 +104,13 @@ const projects = [
         status: 'In Development'
     },
     {
+        title: 'Job Application Tracker',
+        description: 'A modern, responsive web application built with React to help users track and manage job applications efficiently. Features complete CRUD operations, real-time search and filtering by status, color-coded status system, localStorage data persistence, CSV export functionality, and mobile-first responsive design. Includes comprehensive form validation and error handling.',
+        image: 'assets/JobApplicationTracker.png',
+        github: 'https://github.com/moranr123/Job-Application-Tracker',
+        live: 'https://job-tracker-ronald.vercel.app/'
+    },
+    {
         title: 'Budget Tracker',
         description: 'A comprehensive budget tracking application that helps users manage their finances effectively. Features include expense tracking, income management, real-time balance updates, and data visualization.',
         image: 'assets/BudgetTracker.png',
