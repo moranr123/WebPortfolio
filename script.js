@@ -104,6 +104,14 @@ const projects = [
         status: 'In Development'
     },
     {
+        title: 'Netflix Clone',
+        description: 'A responsive Netflix-style UI built with modern front-end tools. Implements browsing, responsive layout, and media showcase components to mimic the Netflix experience.',
+        image: 'assets/Netflix-clone.png',
+        techStack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'TMDB API'],
+        github: 'https://github.com/moranr123/netflix-clone',
+        live: 'https://netflix-clone-chi-seven-56.vercel.app'
+    },
+    {
         title: 'Job Application Tracker',
         description: 'A modern, responsive web application built with React to help users track and manage job applications efficiently. Features complete CRUD operations, real-time search and filtering by status, color-coded status system, localStorage data persistence, CSV export functionality, and mobile-first responsive design. Includes comprehensive form validation and error handling.',
         image: 'assets/JobApplicationTracker.png',
@@ -161,11 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
                               <i class="fab fa-github"></i> GitHub
                            </a>`
                         }
-                        ${(!project.status && project.live) ? 
-                          `<a href="${project.live}" class="project-link" target="_blank">
-                              <i class="fas fa-external-link-alt"></i> Live Demo
-                           </a>` : ''
-                        }
+                                ${(!project.status && project.live) ? 
+                                  `<a href="${project.live}" class="project-link live-demo" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>` : ''
+                                }
                     </div>
                 </div>
             `;
