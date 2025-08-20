@@ -1,6 +1,6 @@
-# 🚀 Ronald Moran Jr - Software Engineer Portfolio
+# 🚀 Ronald Moran Jr - Software Developer Portfolio
 
-A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a software engineer.
+A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a software developer.
 
 ## 🌐 Live Demo
 
@@ -71,7 +71,7 @@ Web Portfolio/
 ## 📊 **Portfolio Content**
 
 ### **Professional Summary**
-Software engineer with expertise in front-end and back-end development, specializing in creating efficient, scalable solutions and intuitive user experiences.
+Software developer with expertise in front-end and back-end development, specializing in creating efficient, scalable solutions and intuitive user experiences.
 
 ### **Technical Skills**
 - **Frontend**: HTML5, CSS3, JavaScript, React
@@ -171,6 +171,6 @@ This project is open source and available under the MIT License.
 
 ---
 
-**Built with ❤️ for showcasing software engineering skills and projects**
+**Built with ❤️ for showcasing software development skills and projects**
 
 *Experience the future of portfolio websites with modern design and interactive features!* 
