@@ -105,7 +105,7 @@ const projects = [
         title: 'Netflix Clone',
         description: 'A responsive Netflix-style UI built with modern front-end tools. Implements browsing, responsive layout, and media showcase components to mimic the Netflix experience.',
         image: 'assets/Netflix-clone.png',
-        techStack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'TMDB API'],
+        techStack: ['React', 'CSS', 'Firebase'],
         github: 'https://github.com/moranr123/netflix-clone',
         live: 'https://netflix-clone-chi-seven-56.vercel.app'
     },
@@ -113,6 +113,7 @@ const projects = [
         title: 'Job Application Tracker',
         description: 'A modern, responsive web application built with React to help users track and manage job applications efficiently. Features complete CRUD operations, real-time search and filtering by status, color-coded status system, localStorage data persistence, CSV export functionality, and mobile-first responsive design. Includes comprehensive form validation and error handling.',
         image: 'assets/JobApplicationTracker.png',
+        techStack: ['React', 'CSS', 'JavaScript', 'LocalStorage'],
         github: 'https://github.com/moranr123/Job-Application-Tracker',
         live: 'https://job-tracker-ronald.vercel.app/'
     },
@@ -120,6 +121,7 @@ const projects = [
         title: 'Budget Tracker',
         description: 'A comprehensive budget tracking application that helps users manage their finances effectively. Features include expense tracking, income management, real-time balance updates, and data visualization.',
         image: 'assets/BudgetTracker.png',
+        techStack: ['HTML5', 'CSS3', 'JavaScript', 'Chart.js'],
         github: 'https://github.com/moranr123/Budget-Tracker',
         live: 'https://moranr123.github.io/Budget-Tracker/'
     },
@@ -127,6 +129,7 @@ const projects = [
         title: 'Smart Quiz App',
         description: 'A modern, responsive quiz application offering an engaging learning experience across multiple subjects. Features include 4 subject categories (English, Math, Science, History), real-time feedback with audio and visual cues, progress tracking, and glassmorphism UI design.',
         image: 'assets/QuizApp.png',
+        techStack: ['HTML5', 'CSS3', 'JavaScript', 'Web Audio API'],
         github: 'https://github.com/moranr123/QuizApp',
         live: 'https://moranr123.github.io/QuizApp/'
     },
@@ -134,6 +137,7 @@ const projects = [
         title: 'Enhanced Weather App',
         description: 'A modern, responsive weather application with advanced features including automatic location detection, geolocation support, unit conversion (Celsius/Fahrenheit), 5-day forecast, and enhanced weather details. Features glassmorphism design with smooth animations and comprehensive error handling.',
         image: 'assets/WeatherApp.png',
+        techStack: ['HTML5', 'CSS3', 'JavaScript', 'Weather API', 'Geolocation API'],
         github: 'https://github.com/moranr123/Weather-App',
         live: 'https://moranr123.github.io/Weather-App/'
     }
@@ -156,6 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="project-content">
                     <h3>${project.title}</h3>
                     <p>${project.description}</p>
+                    ${project.techStack ? `<div class="project-tech-stack">
+                        <strong>Tech Stack:</strong> ${project.techStack.join(', ')}
+                    </div>` : ''}
                     ${project.status ? `<div class="project-status">${project.status}</div>` : ''}
                     ${project.demoNote ? `<div class="project-demo-note">${project.demoNote}</div>` : ''}
                     <div class="project-links">
