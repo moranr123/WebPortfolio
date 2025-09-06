@@ -99,9 +99,7 @@ const projects = [
         description: 'A comprehensive pet management system featuring both a React Native mobile app and React-based Superadmin Web Dashboard. The app includes features like pet registration with QR codes, lost pet reporting with location tracking, stray animal reporting, and a community pet list. The web dashboard provides role-based access for different administrators.',
         image: 'assets/Pawsafety.png',
         techStack: ['React Native', 'React.js', 'Firebase', 'Expo', 'Tailwind CSS', 'Cloud Functions'],
-        githubLink: 'https://github.com/moranr123/Pawsafety',
-        demoNote: 'Demo will be available upon completion',
-        status: 'In Development'
+        github: 'https://github.com/moranr123/Pawsafety'
     },
     {
         title: 'Netflix Clone',
