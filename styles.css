@@ -451,6 +451,30 @@ body {
 }
 
 /* Certificates Section */
+.certificates-section {
+    padding: 6rem 0;
+    background: var(--card-bg);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Legacy certificates class for backward compatibility */
 .certificates {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
@@ -459,17 +483,19 @@ body {
 }
 
 .certificate {
-    background: var(--card-bg);
+    background: var(--bg-color);
     border-radius: 1rem;
     overflow: hidden;
     transition: var(--transition);
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .certificate:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .certificate a {
@@ -917,6 +943,15 @@ body {
 @media (max-width: 768px) {
     .contact-info {
         margin-top: 2rem;
+    }
+    
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .certificate {
+        max-width: 100%;
     }
 }
 
