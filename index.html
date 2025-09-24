@@ -56,6 +56,28 @@
             transform: translateY(-2px);
             filter: brightness(0.95);
         }
+
+        /* Certificate Skills Styling */
+        .certificate-skills {
+            margin-top: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        [data-theme="dark"] .skill-tag {
+            background: #4F46E5;
+        }
     </style>
 </head>
 <body>
@@ -182,6 +204,19 @@
                         <div class="certificate-info">
                             <h4>Programming With Javascript</h4>
                             <p>Meta</p>
+                            <div class="certificate-skills">
+                                <span class="skill-tag">Computer Programming</span>
+                                <span class="skill-tag">Unit Testing</span>
+                                <span class="skill-tag">Jest</span>
+                                <span class="skill-tag">Web Applications</span>
+                                <span class="skill-tag">Functional Design</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Web Development Tools</span>
+                                <span class="skill-tag">Program Development</span>
+                                <span class="skill-tag">Event-Driven Programming</span>
+                                <span class="skill-tag">Scripting</span>
+                                <span class="skill-tag">Node.JS</span>
+                            </div>
                         </div>
                     </a>
                 </div>
