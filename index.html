@@ -57,12 +57,84 @@
             filter: brightness(0.95);
         }
 
-        /* Certificate Skills Styling */
-        .certificate-skills {
-            margin-top: 0.75rem;
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--hover-bg);
+            color: var(--primary-color);
+        }
+
+        .modal-skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-50px) scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
         }
 
         .skill-tag {
@@ -77,6 +149,82 @@
 
         [data-theme="dark"] .skill-tag {
             background: #4F46E5;
+        }
+
+        .skills-toggle {
+            background: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 0.75rem auto 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: auto;
+            min-width: 120px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .skills-toggle:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .skills-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .skills-toggle.expanded i {
+            transform: rotate(180deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Certificate Card Alignment */
+        .certificate {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .certificate a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certificate-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+        }
+
+        .certificate-skills {
+            margin-bottom: 1rem;
+        }
+
+        /* Star icon styling */
+        .certificate-info h4 i.fa-star {
+            color: #FFD700;
+            margin-right: 0.5rem;
         }
     </style>
 </head>
@@ -181,6 +329,19 @@
             <p class="section-subtitle reveal">Professional certifications and completed courses</p>
             <div class="certificates-grid">
                 <div class="certificate reveal">
+                    <a href="https://www.udemy.com/certificate/UC-53ffcce1-4250-4c9a-b935-09e6d235e521/" target="_blank">
+                        <img src="assets/GitandGithub.png" alt="Git and GitHub Certificate" loading="lazy">
+                        <div class="certificate-info">
+                            <h4><i class="fas fa-star"></i> Git and GitHub</h4>
+                            <p>Udemy</p>
+                        </div>
+                    </a>
+                    <button class="skills-toggle" onclick="openModal('git-github-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="certificate reveal">
                     <a href="https://coursera.org/share/dbfccf58336261f668d3ffefa64c1507" target="_blank">
                         <img src="assets/ReactBasics.png" alt="React Basics Certificate" loading="lazy">
                         <div class="certificate-info">
@@ -188,15 +349,10 @@
                             <p>Meta - Coursera</p>
                         </div>
                     </a>
-                </div>
-                <div class="certificate reveal">
-                    <a href="https://www.udemy.com/certificate/UC-53ffcce1-4250-4c9a-b935-09e6d235e521/" target="_blank">
-                        <img src="assets/GitandGithub.png" alt="Git and GitHub Certificate" loading="lazy">
-                        <div class="certificate-info">
-                            <h4>Git and GitHub</h4>
-                            <p>Udemy</p>
-                        </div>
-                    </a>
+                    <button class="skills-toggle" onclick="openModal('react-basics-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                   <div class="certificate reveal">
                     <a href="https://www.coursera.org/account/accomplishments/verify/5OQG3KSZNFEO" target="_blank">
@@ -204,21 +360,12 @@
                         <div class="certificate-info">
                             <h4>Programming With Javascript</h4>
                             <p>Meta</p>
-                            <div class="certificate-skills">
-                                <span class="skill-tag">Computer Programming</span>
-                                <span class="skill-tag">Unit Testing</span>
-                                <span class="skill-tag">Jest</span>
-                                <span class="skill-tag">Web Applications</span>
-                                <span class="skill-tag">Functional Design</span>
-                                <span class="skill-tag">JavaScript</span>
-                                <span class="skill-tag">Web Development Tools</span>
-                                <span class="skill-tag">Program Development</span>
-                                <span class="skill-tag">Event-Driven Programming</span>
-                                <span class="skill-tag">Scripting</span>
-                                <span class="skill-tag">Node.JS</span>
-                            </div>
                         </div>
                     </a>
+                    <button class="skills-toggle" onclick="openModal('javascript-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 <div class="certificate reveal">
                     <a href="https://coursera.org/share/afba467e7261ad1c7bd2faed78aae608" target="_blank">
@@ -228,6 +375,10 @@
                             <p>Meta - Coursera</p>
                         </div>
                     </a>
+                    <button class="skills-toggle" onclick="openModal('frontend-intro-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 <div class="certificate reveal">
                     <a href="https://www.freecodecamp.org/certification/fcc-ad9720d5-3c5c-4768-ab89-7004c863886f/front-end-development-libraries" target="_blank">
@@ -237,6 +388,10 @@
                             <p>freeCodeCamp</p>
                         </div>
                     </a>
+                    <button class="skills-toggle" onclick="openModal('frontend-libraries-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 <div class="certificate reveal">
                     <a href="https://www.freecodecamp.org/certification/fcc-ad9720d5-3c5c-4768-ab89-7004c863886f/responsive-web-design" target="_blank">
@@ -246,6 +401,10 @@
                             <p>freeCodeCamp</p>
                         </div>
                     </a>
+                    <button class="skills-toggle" onclick="openModal('responsive-web-design-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 <div class="certificate reveal">
                     <a href="https://www.freecodecamp.org/certification/fcc-ad9720d5-3c5c-4768-ab89-7004c863886f/javascript-algorithms-and-data-structures-v8" target="_blank">
@@ -255,6 +414,10 @@
                             <p>freeCodeCamp</p>
                         </div>
                     </a>
+                    <button class="skills-toggle" onclick="openModal('js-algorithms-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
               
                 <!-- More certificates can be added here -->
@@ -318,5 +481,222 @@
             </div>
         </div>
     </section>
+
+    <!-- Modals -->
+    <!-- React Basics Modal -->
+    <div id="react-basics-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">React Basics - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('react-basics-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">Development Environment</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">Mobile Development</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">Debugging</span>
+                <span class="skill-tag">UI Components</span>
+                <span class="skill-tag">Front-End Web Development</span>
+                <span class="skill-tag">Web Applications</span>
+                <span class="skill-tag">Javascript</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Git and GitHub Modal -->
+    <div id="git-github-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Git and GitHub - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('git-github-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">Git Workflow</span>
+                <span class="skill-tag">Git Objects</span>
+                <span class="skill-tag">Git Branches</span>
+                <span class="skill-tag">Git Merges</span>
+                <span class="skill-tag">Git Diff</span>
+                <span class="skill-tag">Git Stashing</span>
+                <span class="skill-tag">Git Restore</span>
+                <span class="skill-tag">Git Revert</span>
+                <span class="skill-tag">Git Reset</span>
+                <span class="skill-tag">Remote Repositories</span>
+                <span class="skill-tag">Pull Requests</span>
+                <span class="skill-tag">Fork & Clone</span>
+                <span class="skill-tag">Interactive Rebase</span>
+                <span class="skill-tag">Git Reflogs</span>
+                <span class="skill-tag">Git Aliases</span>
+                <span class="skill-tag">Git Tags</span>
+                <span class="skill-tag">GitHub Pages</span>
+                <span class="skill-tag">Markdown READMEs</span>
+                <span class="skill-tag">GitHub Gists</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Programming with JavaScript Modal -->
+    <div id="javascript-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Programming with JavaScript - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('javascript-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">Computer Programming</span>
+                <span class="skill-tag">Unit Testing</span>
+                <span class="skill-tag">Jest</span>
+                <span class="skill-tag">Web Applications</span>
+                <span class="skill-tag">Functional Design</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Web Development Tools</span>
+                <span class="skill-tag">Program Development</span>
+                <span class="skill-tag">Event-Driven Programming</span>
+                <span class="skill-tag">Scripting</span>
+                <span class="skill-tag">Node.JS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Introduction to Front-End Development Modal -->
+    <div id="frontend-intro-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Introduction to Front-End Development - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('frontend-intro-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">Web Development Tools</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">User Interface (UI)</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">Front-End Web Development</span>
+                <span class="skill-tag">Web Applications</span>
+                <span class="skill-tag">JavaScript Frameworks</span>
+                <span class="skill-tag">Responsive Web Design</span>
+                <span class="skill-tag">HTML and CSS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Web Design Modal -->
+    <div id="responsive-web-design-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Responsive Web Design - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('responsive-web-design-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">Responsive Design</span>
+                <span class="skill-tag">CSS Grid</span>
+                <span class="skill-tag">Flexbox</span>
+                <span class="skill-tag">Media Queries</span>
+                <span class="skill-tag">CSS Variables</span>
+                <span class="skill-tag">Accessibility</span>
+                <span class="skill-tag">Visual Design</span>
+                <span class="skill-tag">Typography</span>
+                <span class="skill-tag">Color Theory</span>
+                <span class="skill-tag">User Experience</span>
+                <span class="skill-tag">Mobile-First Design</span>
+                <span class="skill-tag">Cross-Browser Compatibility</span>
+                <span class="skill-tag">CSS Animations</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Algorithms and Data Structures Modal -->
+    <div id="js-algorithms-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">JavaScript Algorithms and Data Structures - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('js-algorithms-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">JavaScript Fundamentals</span>
+                <span class="skill-tag">ES6</span>
+                <span class="skill-tag">Data Structures</span>
+                <span class="skill-tag">Algorithms</span>
+                <span class="skill-tag">Problem Solving</span>
+                <span class="skill-tag">Array Methods</span>
+                <span class="skill-tag">Object-Oriented Programming</span>
+                <span class="skill-tag">Functional Programming</span>
+                <span class="skill-tag">Regular Expressions</span>
+                <span class="skill-tag">Debugging</span>
+                <span class="skill-tag">Testing</span>
+                <span class="skill-tag">JSON</span>
+                <span class="skill-tag">API Integration</span>
+                <span class="skill-tag">Error Handling</span>
+                <span class="skill-tag">Performance Optimization</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Front-End Development Libraries Modal -->
+    <div id="frontend-libraries-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Front-End Development Libraries - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('frontend-libraries-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Redux</span>
+                <span class="skill-tag">React Router</span>
+                <span class="skill-tag">JSX</span>
+                <span class="skill-tag">React Hooks</span>
+                <span class="skill-tag">State Management</span>
+                <span class="skill-tag">Component Lifecycle</span>
+                <span class="skill-tag">Props and State</span>
+                <span class="skill-tag">Event Handling</span>
+                <span class="skill-tag">Forms and Validation</span>
+                <span class="skill-tag">API Integration</span>
+                <span class="skill-tag">Testing with Jest</span>
+                <span class="skill-tag">React Testing Library</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">SASS/SCSS</span>
+                <span class="skill-tag">jQuery</span>
+                <span class="skill-tag">Front-End Architecture</span>
+                <span class="skill-tag">Build Tools</span>
+                <span class="skill-tag">Package Management</span>
+                <span class="skill-tag">Version Control</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            event.stopPropagation();
+            event.preventDefault();
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal.show');
+                modals.forEach(modal => {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
