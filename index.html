@@ -322,12 +322,25 @@
         </div>
     </section>
 
-    <!-- Certificates Section -->
+    <!-- Certificates Section -->w
     <section id="certificates" class="certificates-section">
         <div class="container">
             <h2 class="section-title reveal">My Certificates</h2>
             <p class="section-subtitle reveal">Professional certifications and completed courses</p>
             <div class="certificates-grid">
+                 <div class="certificate reveal">
+                    <a href="https://coursera.org/share/eb6df70c9c3564b5b3fd279d841efd4c" target="_blank">
+                        <img src="assets/AdvanceReact.png" alt="Advanced React Certificate" loading="lazy">
+                        <div class="certificate-info">
+                            <h4><i class="fas fa-star"></i> Advanced React</h4>
+                            <p>Meta</p>
+                        </div>
+                    </a>
+                    <button class="skills-toggle" onclick="openModal('advanced-react-modal')">
+                        <span>Skills Gained</span>
+                        <i class="fas fa-eye"></i>
+                    </button>
+                 </div>
                 <div class="certificate reveal">
                     <a href="https://www.udemy.com/certificate/UC-53ffcce1-4250-4c9a-b935-09e6d235e521/" target="_blank">
                         <img src="assets/GitandGithub.png" alt="Git and GitHub Certificate" loading="lazy">
@@ -666,6 +679,29 @@
         </div>
     </div>
 
+    <!-- Advanced React Modal -->
+    <div id="advanced-react-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Advanced React - Skills Gained</h3>
+                <button class="modal-close" onclick="closeModal('advanced-react-modal')">&times;</button>
+            </div>
+            <div class="modal-skills">
+                <span class="skill-tag">Web Development Tools</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Integration Testing</span>
+                <span class="skill-tag">API Design</span>
+                <span class="skill-tag">Unit Testing</span>
+                <span class="skill-tag">Jest (JavaScript Testing Framework)</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">UI Components</span>
+                <span class="skill-tag">Front-End Web Development</span>
+                <span class="skill-tag">JavaScript Frameworks</span>
+                <span class="skill-tag">Javascript</span>
+            </div>
+        </div>
+    </div>
+ 
     <script>
         function openModal(modalId) {
             event.stopPropagation();
